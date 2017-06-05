@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="greetingBefore" class="advice.GreetingBeforeAdvice"></bean>
+
+    <bean id="target" class="advice.NavieWaiter"></bean>
+
+    <bean id="greetingAfter" class="advice.GreetingAfterAdvice"></bean>
+
+    <bean id="greetingInterceptor" class="advice.GreetingInterceptor"></bean>
+
+
+    <!--配置异常抛出增强-->
+    <!--<bean id="tansactionManager" class="advice.TransactionManager"></bean>-->
+
+    <!--<bean id="waiter" class="org.springframework.aop.framework.ProxyFactoryBean"-->
+          <!--p:interceptorNames="tansactionManager"-->
+          <!--p:proxyTargetClass="true"-->
+          <!--p:target-ref="target"></bean>-->
+
+
+    <!--配置引介增强-->
+    <!--<bean id="pmonitor" class="advice.ControllablePerformanceMonitor"></bean>-->
+
+    <!--<bean id="forumServiceTarget" class="cglibProxy.ForumService"></bean>-->
+
+    <!--<bean id="forumService" class="org.springframework.aop.framework.ProxyFactoryBean"-->
+          <!--p:interfaces="cglibProxy.Monitorable"-->
+          <!--p:target-ref="forumServiceTarget"-->
+          <!--p:interceptorNames="pmonitor"-->
+          <!--p:proxyTargetClass="true"></bean>-->
+
+    <!--配置复合切点切面-->
+
+    <!--<bean id="greetingAdvice" class="advice.GreetingBeforeAdvice"></bean>-->
+
+    <!--<bean id="gcp" class="advicer.GreetingComposablePointcut"></bean>-->
+
+    <!--<bean id="composableAdvicor" class="org.springframework.aop.support.DefaultPointcutAdvisor"-->
+          <!--p:pointcut-="#{gcp.intersectionPointcut}"-->
+          <!--p:advice-ref="greetingAdvice"></bean>-->
+
+    <!--<bean id="waiter2" class="org.springframework.aop.framework.ProxyFactoryBean"-->
+          <!--p:interceptorNames="composableAdvicor"-->
+          <!--p:target-ref="target"-->
+          <!--p:proxyTargetClass="true"></bean>-->
+
+
+    <!--配置引介切面-->
+
+    <!--<bean id="introduceAdvisor" class="org.springframework.aop.support.DefaultIntroductionAdvisor">-->
+        <!--<constructor-arg>-->
+            <!--<bean class="advice.ControllablePerformanceMonitor"></bean>-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
+
+    <!--<bean id="forumServiceTarget" class="cglibProxy.ForumService"></bean>-->
+
+    <!--<bean id="forumService" class="org.springframework.aop.framework.ProxyFactoryBean"-->
+          <!--p:interceptorNames="introduceAdvisor"-->
+          <!--p:target-ref="forumServiceTarget"-->
+          <!--p:proxyTargetClass="true"></bean>-->
+
+    <!--动态切面配置-->
+
+    <bean id="pointcut" class="advicer.GreetingDynamicPointcut"></bean>
+
+    <bean id="dynamicAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"
+          p:pointcut-ref="pointcut"
+          p:advice-ref="greetingBefore"></bean>
+
+    <!--<bean id="waiter3" class="org.springframework.aop.framework.ProxyFactoryBean"-->
+          <!--p:proxyTargetClass="true"-->
+          <!--p:target-ref="target"-->
+          <!--p:interceptorNames="dynamicAdvisor"></bean>-->
+
+    <!--自动创建代理-->
+    <bean id="autoProxyCreator" class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          p:proxyTargetClass="true"></bean>
+
+</beans>
