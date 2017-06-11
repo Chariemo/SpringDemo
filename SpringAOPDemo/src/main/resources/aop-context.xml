@@ -78,5 +78,6 @@
     <!--自动创建代理-->
     <bean id="autoProxyCreator" class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
           p:proxyTargetClass="true"></bean>
+    
 
 </beans>
