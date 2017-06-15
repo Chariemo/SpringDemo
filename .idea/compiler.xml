@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Intro" />
         <module name="SpringAOPDemo" />
+        <module name="SpringMVCDemo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Intro" target="1.5" />
       <module name="SpringAOPDemo" target="1.5" />
+      <module name="SpringMVCDemo" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
